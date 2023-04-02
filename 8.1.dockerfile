@@ -35,7 +35,17 @@ RUN \
 
 RUN apt clean
 
+RUN git clone https://github.com/maitabom/PHPServer.git /root/serverconfig
+
+RUN cp /root/serverconfig/scripts/starter.sh /root && cp /root/serverconfig/conf/000-default.conf /etc/apache2/sites-enabled/000-default.conf
+
+RUN rm -rf /root/serverconfig
+
+RUN chmod +x /root/starter.sh
+
 EXPOSE 80
+
+CMD /root/starter.sh
 
 WORKDIR /var/www/html
 
